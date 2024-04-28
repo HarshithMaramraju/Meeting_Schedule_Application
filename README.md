@@ -1,1 +1,4 @@
 # Meeting_Schedule_Application
+
+Creating a platform for scheduling Application Windows is the project's main objective. With the help of Java JDBC on the backend and Swing GUI on the interface, users can safely authenticate and send emails, as well as exchange scheduling links and establish their availability. Users may easily merge their events thanks to integration with Calendar API. Simple user interfaces are offered by the   scheduling and data retrieval. The backend manages user authentication, calendar integration, and communication between the frontend and backend via RESTful APIs. This architecture satisfies the fundamental needs of the scheduling platform by guaranteeing scalability, security, and responsiveness across many devices. And need to add the jar files to the project before launching. The project should export to the localdisk to start and run.
+
