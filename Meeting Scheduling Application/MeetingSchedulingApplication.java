@@ -5,10 +5,13 @@ import java.awt.EventQueue;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
+import java.util.Random;
+import java.util.Scanner;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.*;
+import java.net.URL;
 import java.security.PublicKey;
 
 import javax.swing.JFrame;
@@ -41,6 +44,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import java.awt.Checkbox;
+import java.awt.Container;
 import java.awt.Panel;
 
 import javax.mail.*;
@@ -112,6 +116,8 @@ public class MeetingSchedulingApplication extends JFrame {
 	private JTable tableMeeting;
 	private JTextField textFieldTo;
 	private JTextField textFieldFrom;
+	private JTextField txtMeetingId;
+	private JTextField textPassword;
 	
 
 	
@@ -166,8 +172,8 @@ public class MeetingSchedulingApplication extends JFrame {
 		contentPane.setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel.setBounds(24, 57, 517, 370);
+		panel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -303,13 +309,13 @@ public class MeetingSchedulingApplication extends JFrame {
 		panel.add(btnNewButton);
 		
 		JLabel lblMeetingSchedulingApplication = new JLabel("Meeting Scheduling Application");
+		lblMeetingSchedulingApplication.setBounds(442, 10, 281, 32);
 		lblMeetingSchedulingApplication.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblMeetingSchedulingApplication.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMeetingSchedulingApplication.setBounds(442, 10, 281, 32);
 		contentPane.add(lblMeetingSchedulingApplication);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(562, 57, 588, 646);
+		scrollPane.setBounds(562, 57, 588, 370);
 		contentPane.add(scrollPane);
 		
 		tableMeeting = new JTable();
@@ -324,7 +330,7 @@ public class MeetingSchedulingApplication extends JFrame {
 		));
 		
 		Panel panel_1 = new Panel();
-		panel_1.setBounds(24, 459, 517, 244);
+		panel_1.setBounds(565, 459, 585, 244);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -425,5 +431,77 @@ public class MeetingSchedulingApplication extends JFrame {
 		btnSend.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		btnSend.setBounds(49, 213, 85, 21);
 		panel_1.add(btnSend);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel_2.setBounds(24, 459, 517, 244);
+		contentPane.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel lblMeetingLink = new JLabel("Meeting Link");
+		lblMeetingLink.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblMeetingLink.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMeetingLink.setBounds(165, 10, 145, 31);
+		panel_2.add(lblMeetingLink);
+		
+		JButton btnCopy = new JButton("Generate");
+		btnCopy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				Scanner r = new Scanner(System.in);
+				Random random = new Random();
+				String contain = "1234567890abcdefghijklmnopqrstuvwxyz";
+				StringBuilder builder = new StringBuilder(8);
+				for (int i = 0; i < 8; i++) {
+					builder.append(contain.charAt(random.nextInt(contain.length())));
+				}
+				String ran = builder.toString();
+				txtMeetingId.setText(ran);	
+				
+				Random random1 = new Random();
+				String contain1 = "1234567890";
+				StringBuilder builder1 = new StringBuilder(4);
+				for (int i = 0; i <4; i++) {
+					builder1.append(contain1.charAt(random1.nextInt(contain1.length())));
+				}
+				String ran1 = builder1.toString();
+				textPassword.setText(ran1);
+					
+//				int start = 100000;
+//				int end = 100000;
+//				int result = (end-start)+start;
+//				txtMeetingId.setText(String.valueOf(result));
+			}
+		});
+		btnCopy.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		btnCopy.setBounds(165, 184, 134, 31);
+		panel_2.add(btnCopy);
+		
+		txtMeetingId = new JTextField();
+		txtMeetingId.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				String meetLink = lblMeetingLink.setText();
+//				URL url = new URL();
+			}
+		});
+		txtMeetingId.setBounds(136, 79, 215, 29);
+		panel_2.add(txtMeetingId);
+		txtMeetingId.setColumns(10);
+		
+		JLabel lblCode = new JLabel("Code");
+		lblCode.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCode.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblCode.setBounds(37, 77, 63, 29);
+		panel_2.add(lblCode);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPassword.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblPassword.setBounds(24, 131, 90, 31);
+		panel_2.add(lblPassword);
+		
+		textPassword = new JTextField();
+		textPassword.setColumns(10);
+		textPassword.setBounds(136, 134, 215, 29);
+		panel_2.add(textPassword);
 	}
 }
